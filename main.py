@@ -5,7 +5,7 @@ import os
 import instagram_checker
 
 BOT_TOKEN = os.environ["TOKEN"]
-DISCORD_CHANNEL_ID = 1520037247846715463
+DISCORD_CHANNEL_ID = 1520123459274018856
 YOUTUBE_CHANNEL_ID = "UCJnL-TBcsYrF2SLs7tmiC8Q"
 
 intents = discord.Intents.default()
