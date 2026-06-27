@@ -14,7 +14,7 @@ client = discord.Client(intents=intents)
 last_video_id = None
 
 def get_latest_video():
-    url = f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
+    url = f"https://www.youtube.com/feeds/videos.xml?channel_id={UCJnL-TBcsYrF2SLs7tmiC8Q}"
     feed = feedparser.parse(url)
     if feed.entries:
         return feed.entries[0]
