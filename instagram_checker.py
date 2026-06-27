@@ -16,7 +16,7 @@ async def check_instagram():
     global last_post_ids
     for account in INSTA_TARGET_ACCOUNTS:
         try:
-            rss_url = f"https://rsshub.app/instagram/user/{account}"
+            rss_url = f"https://rss.app/feeds/v1.1/_Pz5FJoJV5JV5JV5J.json"
             feed = feedparser.parse(rss_url)
 
             if not feed.entries:
