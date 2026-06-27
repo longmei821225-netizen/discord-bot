@@ -2,6 +2,7 @@ import discord
 from discord.ext import tasks
 import feedparser
 import os
+import instagram_checker
 
 BOT_TOKEN = os.environ["TOKEN"]
 DISCORD_CHANNEL_ID = 1520037247846715463
@@ -42,5 +43,9 @@ async def check_youtube():
 async def on_ready():
     print(f"✅ {client.user} 시작됨!")
     check_youtube.start()
+    try:
+        instagram_checker.start(client)
+    except Exception as e:
+        print(f"⚠️ 인스타그램 시작 오류: {e}")
 
 client.run(BOT_TOKEN)
