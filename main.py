@@ -34,10 +34,9 @@ async def check_youtube():
 
     if video_id != last_video_id:
         last_video_id = video_id
-        channel = client.get_channel(1520123459274018856)
-      await channel.send(
+        channel = client.get_channel(DISCORD_CHANNEL_ID)
+        await channel.send(
             f"@everyone 새 영상 업로드!\n**{video.title}**\nhttps://www.youtube.com/watch?v={video_id}"
-        )
         )
 
 @client.event
