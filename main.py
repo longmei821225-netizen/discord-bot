@@ -20,7 +20,7 @@ def get_latest_video():
         return feed.entries[0]
     return None
 
-@tasks.loop(minutes=5)
+@tasks.loop(minutes=1)
 async def check_youtube():
     global last_video_id
     video = get_latest_video()
