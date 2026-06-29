@@ -11,7 +11,7 @@ DISCORD_CHANNEL_ID = 1520037247846715463
 last_post_ids = {}
 _discord_client = None
 
-@tasks.loop(minutes=5)
+@tasks.loop(minutes=1)
 async def check_instagram():
     global last_post_ids
     for account in INSTA_TARGET_ACCOUNTS:
