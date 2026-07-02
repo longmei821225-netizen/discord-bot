@@ -20,24 +20,26 @@ def get_latest_video():
         return feed.entries[0]
     return None
 
-@tasks.loop(minutes=1)
+@tasks.loop(seconds=30)  # 1분 → 30초로 단축
 async def check_youtube():
     global last_video_id
-    video = get_latest_video()
-    if not video:
-        return
-
-    video_id = video.yt_videoid
-    if last_video_id is None:
-        last_video_id = video_id
-        return
-
-    if video_id != last_video_id:
-        last_video_id = video_id
-        channel = client.get_channel(DISCORD_CHANNEL_ID)
-        await channel.send(
-            f"@everyone 새 영상 업로드!\n**{video.title}**\nhttps://www.youtube.com/watch?v={video_id}"
-        )
+    try:
+        video = get_latest_video()
+        if not video:
+            return
+        video_id = video.yt_videoid
+        if last_video_id is None:
+            last_video_id = video_id
+            return
+        if video_id != last_video_id:
+            last_video_id = video_id
+            channel = client.get_channel(DISCORD_CHANNEL_ID)
+            if channel:
+                await channel.send(
+                    f"@everyone 새 영상 업로드!\n**{video.title}**\nhttps://www.youtube.com/watch?v={video_id}"
+                )
+    except Exception as e:
+        print(f"⚠️ 유튜브 체크 오류: {e}")
 
 @client.event
 async def on_ready():
